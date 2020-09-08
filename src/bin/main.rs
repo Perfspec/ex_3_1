@@ -1,10 +1,8 @@
-use ex_3_1::binary::Binary;
+use ex_3_1::PowerSet;
 
 fn main() {
-    let binary = Binary::new(9);
-	for bits in binary {
-		println!("{:?}", bits);
-	}
+    let power_set = PowerSet::new(3);
+	println!("{:#?}", power_set);
 }
 
 

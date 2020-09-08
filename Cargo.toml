@@ -1,6 +1,6 @@
 [package]
 name = "ex_3_1"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Perfspec <lewisrwebb@gmail.com>"]
 edition = "2018"
 
