@@ -74,7 +74,36 @@ impl PowerSet {
 		}
 		
 		// validate subset of power_set
-		false
+		let empty_set: Vec<usize> = Vec::new();
+		let mut whole_set = Vec::new();
+		for i in 0..self.cardinality {
+			whole_set.push(i);
+		}
+		let contains_empty_set = power_set_subset.contains(&Vec::new());
+		let contains_whole_set = power_set_subset.contains(&whole_set);
+		let mut unions_are_conserved = true;
+		let mut intersections_are_conserved = true;
+		if contains_empty_set & contains_whole_set {
+			for element1 in &power_set_subset {
+				for element2 in &power_set_subset {
+					let mut union = [element1.clone(),element2.clone()].concat();
+					union.sort();
+					union.dedup();
+					unions_are_conserved = unions_are_conserved & (power_set_subset.contains(&union));
+					let mut intersection = Vec::new();
+					for &i in element1 {
+						if element2.contains(&i) {
+							intersection.push(i);
+						}
+					}
+					intersections_are_conserved = intersections_are_conserved & (power_set_subset.contains(&intersection));
+				}
+			}
+		} else {
+			unions_are_conserved = false;
+			intersections_are_conserved = false;
+		}
+		contains_empty_set & contains_whole_set & unions_are_conserved & intersections_are_conserved
 	}
 }
 
