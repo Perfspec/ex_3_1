@@ -47,6 +47,7 @@ impl PowerSet {
 		
 		// check all possible subsets of the power_set to see if they are topologies or not
 		for binary in binary_counter {
+			println!(".");
 			if self.is_topology(&binary) {
 				count_of_topologies += 1;
 			}
